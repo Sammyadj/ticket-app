@@ -6,6 +6,7 @@ import 'package:ticket_app/base/widgets/app_double_text.dart';
 import 'package:ticket_app/base/widgets/ticket_view.dart';
 
 import '../base/res/styles/app_styles.dart';
+import '../base/utils/all_json.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -71,7 +72,19 @@ class HomeScreen extends StatelessWidget {
                   smallText: 'View all',
                 ),
                 const SizedBox(height: 20),
-                const TicketView(),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children:
+                        ticketList
+                            .take(2)
+                            .map(
+                              (singleTicket) =>
+                                  TicketView(ticket: singleTicket),
+                            )
+                            .toList(),
+                  ),
+                ),
               ],
             ),
           ),
