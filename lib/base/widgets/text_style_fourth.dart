@@ -5,10 +5,12 @@ import '../res/styles/app_styles.dart';
 class TextStyleFourth extends StatelessWidget {
   final String text;
   final TextAlign align;
+  final bool? isColor;
   const TextStyleFourth({
     super.key,
     required this.text,
     this.align = TextAlign.start,
+    this.isColor,
   });
 
   @override
@@ -16,7 +18,10 @@ class TextStyleFourth extends StatelessWidget {
     return Text(
       text,
       textAlign: align,
-      style: AppStyles.headLineStyle4.copyWith(color: Colors.white),
+      style:
+          isColor == null
+              ? AppStyles.headLineStyle4.copyWith(color: Colors.white)
+              : AppStyles.headLineStyle4,
     );
   }
 }

@@ -5,13 +5,13 @@ import 'package:ticket_app/base/widgets/app_double_text.dart';
 import 'package:ticket_app/screens/search/widgets/app_text_icon.dart';
 import 'package:ticket_app/screens/search/widgets/app_ticket_tabs.dart';
 import 'package:ticket_app/screens/search/widgets/find_tickets.dart';
+import 'package:ticket_app/screens/search/widgets/ticket_promotion.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: AppStyles.bgColor,
       body: ListView(
@@ -23,7 +23,7 @@ class SearchScreen extends StatelessWidget {
             style: AppStyles.headLineStyle1.copyWith(fontSize: 35),
           ),
           const SizedBox(height: 20),
-          const AppTicketTabs(),
+          const AppTicketTabs(firstTab: 'Airline Tickets', secondTab: 'Hotels'),
           const SizedBox(height: 20),
           const AppTextIcon(
             icon: Icons.flight_takeoff_rounded,
@@ -40,29 +40,7 @@ class SearchScreen extends StatelessWidget {
             func: () => Navigator.pushNamed(context, AppRoutes.allTickets),
           ),
           const SizedBox(height: 15),
-          Row(
-            children: [
-              Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 15,
-                  vertical: 15,
-                ),
-                width: size.width * .42,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.shade200,
-                      blurRadius: 1,
-                      spreadRadius: 2,
-                    ),
-                  ],
-                ),
-                child: const Text("A long text"),
-              ),
-            ],
-          ),
+          const TicketPromotion(),
         ],
       ),
     );
