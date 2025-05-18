@@ -6,6 +6,7 @@ import 'package:ticket_app/base/utils/all_json.dart';
 import 'package:ticket_app/base/widgets/app_layoutbuilder_widget.dart';
 import 'package:ticket_app/base/widgets/ticket_view.dart';
 import 'package:ticket_app/screens/search/widgets/app_ticket_tabs.dart';
+import 'package:ticket_app/screens/ticket/widgets/ticket_positioned_circle.dart';
 
 import '../../base/widgets/app_column_text_layout.dart';
 
@@ -155,21 +156,8 @@ class TicketScreen extends StatelessWidget {
               ),
             ],
           ),
-          Positioned(
-            left: 22,
-            top: 250,
-            child: Container(
-              padding: const EdgeInsets.all(3),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(width: 2, color: AppStyles.textColor),
-              ),
-              child: CircleAvatar(
-                maxRadius: 4,
-                backgroundColor: AppStyles.textColor,
-              ),
-            ),
-          ),
+          const TicketPositionedCircle(pos: true),
+          const TicketPositionedCircle(),
         ],
       ),
     );
