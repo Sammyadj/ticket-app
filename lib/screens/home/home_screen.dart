@@ -6,6 +6,8 @@ import 'package:ticket_app/base/widgets/ticket_view.dart';
 import 'package:ticket_app/screens/home/widgets/hotel.dart';
 import '../../base/res/styles/app_styles.dart';
 import '../../base/utils/all_json.dart';
+import '../../base/utils/app_routes.dart';
+// import '../../base/utils/all_json.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -92,7 +94,7 @@ class HomeScreen extends StatelessWidget {
                   bigText: 'Hotels',
                   smallText: 'View all',
                   func: () {
-                    print("hotels view");
+                    Navigator.pushNamed(context, AppRoutes.allHotels);
                   },
                 ),
                 const SizedBox(height: 20),

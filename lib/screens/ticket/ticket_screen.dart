@@ -10,27 +10,50 @@ import 'package:ticket_app/screens/ticket/widgets/ticket_positioned_circle.dart'
 
 import '../../base/widgets/app_column_text_layout.dart';
 
-class TicketScreen extends StatelessWidget {
+class TicketScreen extends StatefulWidget {
   const TicketScreen({super.key});
+
+  @override
+  State<TicketScreen> createState() => _TicketScreenState();
+}
+
+class _TicketScreenState extends State<TicketScreen> {
+  late int ticketIndex = 0;
+
+  @override
+  void didChangeDependencies() {
+    if (ModalRoute.of(context)!.settings.arguments != null) {
+      var args = ModalRoute.of(context)!.settings.arguments as Map;
+      ticketIndex = args["index"];
+      super.didChangeDependencies();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppStyles.bgColor,
+      appBar: AppBar(
+        title: const Text("Tickets"),
+        backgroundColor: AppStyles.bgColor,
+      ),
       body: Stack(
         children: [
           ListView(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
             children: [
-              const SizedBox(height: 40),
-              Text("Tickets", style: AppStyles.headLineStyle1),
-              const SizedBox(height: 20),
+              // const SizedBox(height: 40),
+              // Text("Tickets", style: AppStyles.headLineStyle1),
+              // const SizedBox(height: 20),
               const AppTicketTabs(firstTab: 'Upcoming', secondTab: 'Previous'),
               const SizedBox(height: 20),
               // White and Black ticket
               Container(
                 padding: const EdgeInsets.only(left: 16),
-                child: TicketView(ticket: ticketList[0], isColor: true),
+                child: TicketView(
+                  ticket: ticketList[ticketIndex],
+                  isColor: true,
+                ),
               ),
               const SizedBox(height: 1),
               Container(
@@ -152,7 +175,7 @@ class TicketScreen extends StatelessWidget {
               // Colorful ticket
               Container(
                 padding: const EdgeInsets.only(left: 16),
-                child: TicketView(ticket: ticketList[0]),
+                child: TicketView(ticket: ticketList[ticketIndex]),
               ),
             ],
           ),
