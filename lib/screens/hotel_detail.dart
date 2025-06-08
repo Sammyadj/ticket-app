@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ticket_app/base/utils/all_json.dart';
 
 class HotelDetail extends StatefulWidget {
   const HotelDetail({super.key});
@@ -9,9 +10,11 @@ class HotelDetail extends StatefulWidget {
 }
 
 class _HotelDetailState extends State<HotelDetail> {
+  late int index = 0;
   @override
   void didChangeDependencies() {
     var args = ModalRoute.of(context)!.settings.arguments as Map;
+    index = args["index"];
     super.didChangeDependencies();
   }
 
@@ -24,8 +27,10 @@ class _HotelDetailState extends State<HotelDetail> {
             expandedHeight: 300.0,
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
-              title: const Text("Hotel title"),
-              background: Image.network("https://placehold.co/600x400/png"),
+              title: Text(hotelList[index]["place"]),
+              background: Image.asset(
+                "assets/images/${hotelList[index]["image"]}",
+              ),
             ),
           ),
           SliverList(
