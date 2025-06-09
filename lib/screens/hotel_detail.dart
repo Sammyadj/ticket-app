@@ -1,5 +1,8 @@
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ticket_app/base/res/styles/app_styles.dart';
 import 'package:ticket_app/base/utils/all_json.dart';
 
 class HotelDetail extends StatefulWidget {
@@ -26,10 +29,61 @@ class _HotelDetailState extends State<HotelDetail> {
           SliverAppBar(
             expandedHeight: 300.0,
             pinned: true,
+            leading: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: AppStyles.primaryColor,
+                  ),
+                  child: const Icon(Icons.arrow_back, color: Colors.white),
+                ),
+              ),
+            ),
             flexibleSpace: FlexibleSpaceBar(
-              title: Text(hotelList[index]["place"]),
-              background: Image.asset(
-                "assets/images/${hotelList[index]["image"]}",
+              // title: Text(hotelList[index]["place"]),
+              background: Stack(
+                children: [
+                  Positioned.fill(
+                    child: Image.asset(
+                      "assets/images/${hotelList[index]["image"]}",
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  Positioned(
+                    bottom: 20,
+                    right: 20,
+                    child: Container(
+                      color: Colors.black.withValues(
+                        alpha: 0.4,
+                        colorSpace: ColorSpace.sRGB,
+                      ),
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 4,
+                        ),
+                        child: Text(
+                          hotelList[index]["place"],
+                          style: TextStyle(
+                            fontSize: 24,
+                            color: Colors.white,
+                            shadows: [
+                              Shadow(
+                                blurRadius: 10.0,
+                                color: AppStyles.primaryColor,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
